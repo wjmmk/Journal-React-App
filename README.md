@@ -11,7 +11,9 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-This is an application that provides images of Marvel and DC Super Heroes.
+### `Description`
 
-![](public/assets/20171130_imax-1280x720.jpg)
+This is an application that controls the daily events of any user; based on small notes, which allow you to jot down all the important activities that you need to consider.
+
+![](public/assets/Main Screen.jpg)
 
