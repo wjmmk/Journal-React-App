@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+And Authentication is implemented with Firebase 9.0
 
 ## Available Scripts
 
