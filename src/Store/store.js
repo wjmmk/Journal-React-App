@@ -1,9 +1,11 @@
 import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import thunk from 'redux-thunk';
 import { authReducer } from "../Reducers/authReducer";
+import { registerReducer } from "../Reducers/registerReducer";
 
 const reducers = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    register: registerReducer
 })
 
 // Esta linea habilita la posibilidad de implementar en Windows Varios Middleware.

@@ -1,6 +1,6 @@
 import { getAuth, signInWithPopup } from "firebase/auth";
 import { provider } from '../Firebase/firebaseConfig'
-import { types } from '../Types/type';
+import types from '../Types/type';
 
 export const startLoginEmailPassword = (email, password) => {
     return (dispacth) => {
