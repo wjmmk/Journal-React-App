@@ -10,12 +10,11 @@ const JournalScreen = () => {
         <Siderbar />
 
         <main>
-            <h1> Main content</h1>
-
+        
           {/*   <NothingSelecter /> */}
 
           <NoteScreen />
-        </main>
+        </main> 
      </div>   
     )
 }
