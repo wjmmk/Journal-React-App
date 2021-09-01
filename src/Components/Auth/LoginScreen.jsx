@@ -1,6 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+//import env from '@beam-australia/react-env'
+ 
+
 import { startGoogleLogin, startLoginEmailPassword } from '../../Actions/auth';
 
 import useForm from '../../Hooks/useForm';
@@ -11,8 +15,8 @@ const LoginScreen = () => {
 
     // Establezco los valores de los campos en duro del formulario por medio del Hook useForm
     const [formValue, handleInputChange] = useForm({
-        email: 'wjmmK3@gmail.com',
-        password: 'W-9783238k'
+        email: process.env.REACT_APP_email,
+        password: process.env.REACT_APP_password
     })
 
     const {email, password} = formValue;
