@@ -29,6 +29,13 @@ export const startGoogleLogin = (email, password) => {
     }
 }
 
+export const startRegisterWithNameEmailPassword = () => {
+  const auth = getAuth();
+    return ( dispacth ) => {
+
+    }
+}
+
 // Usando los Types para la Autentificacion.
 export const authLogin = (uid, displayName) => ({
         type: types.login,

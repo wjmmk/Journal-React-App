@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import useForm from '../../Hooks/useForm';
 import validator from 'validator';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerError, removeError } from '../../Actions/register';
+import { registerError, removeError } from '../../Actions/registerError';
 
 const RegisterScreen = () => {
 

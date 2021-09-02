@@ -5,10 +5,12 @@
 /.pnp
 .pnp.js
 
+# Forders
+.env
+
 # IDEs and editors
 /.idea
 .project
-.env
 .classpath
 .c9/
 *.launch
