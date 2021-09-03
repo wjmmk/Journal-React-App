@@ -6,7 +6,10 @@
     logout: '[Auth] Logout',
 
     registerError: '[Register] Set Error',
-    removeError: '[Remover] Remove Error'
+    removeError: '[Remover] Remove Error',
+
+    uiStartLoading: '[UI] Start loading',
+    uiFinishLoading: '[UI] Finish loading'
     
 }
 

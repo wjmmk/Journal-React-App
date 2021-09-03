@@ -1,19 +1,36 @@
-import { getAuth, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { 
+          getAuth, 
+          signInWithPopup, 
+          createUserWithEmailAndPassword, 
+          signInWithEmailAndPassword,
+          signOut
+} from "firebase/auth";
 import { provider } from '../Firebase/firebaseConfig'
 import types from '../Types/type';
+import { finishLoading, startLoading } from "./registerError";
+import Swal from 'sweetalert2';
+
+
 
 export const startLoginEmailPassword = (email, password) => {
     return (dispacth) => {
+
+      dispacth( startLoading())
+
       const auth = getAuth();  
       signInWithEmailAndPassword(auth, email, password)
               .then((result) => {
-                console.log(result);
-                dispacth(
-                    authLogin(result.user.uid, result.user.email)
-                )
+                //console.log(result);
+
+                dispacth( authLogin(result.user.uid, result.user.displayName, result.user.email) )
+
+                dispacth( finishLoading())
               })
               .catch((error) => {
                 console.log(error);
+
+                Swal.fire('Error', error.message, error);
+                dispacth( finishLoading())
               });    
 
     }
@@ -23,7 +40,7 @@ export const startLoginEmailPassword = (email, password) => {
 export const startGoogleLogin = (email, password) => {
    
     return async (dispacth) => {
-      
+
       const auth = getAuth();
             signInWithPopup(auth, provider)
               .then((result) => {
@@ -50,9 +67,7 @@ export const startRegisterWithNameEmailPassword = (name, email, password) => {
           console.log(user)
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage)
+          Swal.fire('Error', error.message, error);
         });
     }
 }
@@ -64,4 +79,24 @@ export const authLogin = (uid, displayName) => ({
             uid,
             displayName
         }
+})
+
+export const startLogout = () => {
+
+  return async ( dispatch ) => {
+    const auth = getAuth();
+     
+      await signOut(auth).then(() => {
+        
+        dispatch( logout() )
+
+      }).catch((error) => {
+        // An error happened.
+        Swal.fire('Error', error.message, error);
+      });
+  }
+}
+
+export const logout = () => ({
+    type: types.logout
 })

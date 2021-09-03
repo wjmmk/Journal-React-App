@@ -1,17 +1,16 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 //import env from '@beam-australia/react-env'
- 
-
 import { startGoogleLogin, startLoginEmailPassword } from '../../Actions/auth';
-
 import useForm from '../../Hooks/useForm';
+
 
 const LoginScreen = () => {
 
     const dispatch = useDispatch();
+    const {loading} = useSelector( state => state.register.loading)
+    //console.log(state)
 
     // Establezco los valores de los campos en duro del formulario por medio del Hook useForm
     const [formValue, handleInputChange] = useForm({
@@ -61,6 +60,7 @@ const LoginScreen = () => {
 
                <button type="submit"
                        className="btn btn-primary btn-block"
+                       disabled={ loading }
                 >
                    Submit
                </button>
