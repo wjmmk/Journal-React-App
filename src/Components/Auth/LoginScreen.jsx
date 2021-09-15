@@ -10,21 +10,22 @@ const LoginScreen = () => {
 
     const dispatch = useDispatch();
     const {loading} = useSelector( state => state.register.loading)
-    //console.log(state)
+    console.log(loading)
 
     // Establezco los valores de los campos en duro del formulario por medio del Hook useForm
     const [formValue, handleInputChange] = useForm({
+        name: process.env.REACT_APP_name,
         email: process.env.REACT_APP_email,
         password: process.env.REACT_APP_password
     })
 
-    const {email, password} = formValue;
+    const { email, password, name} = formValue;
 
     // Se habilita el boton submit del Formulario
     const handleLogin = (e) => {
         e.preventDefault()
-        /* console.log(email, password) */
-        dispatch(startLoginEmailPassword(email, password))
+        console.log(email, password)
+        dispatch(startLoginEmailPassword(email, password, name))
     }
 
     const handleGoogleLogin = (e) => {

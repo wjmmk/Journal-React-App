@@ -7,41 +7,45 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './PublicRoutes';
+import { startLoadingNotes } from '../Actions/notes';
 
 const AppRouter = () => {
 
   const dispatch = useDispatch();
   const [checking, setChecking] = useState(true);
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
 
         const auth = getAuth();
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
           console.log(user);
           if (user) {
             // User is signed in, see docs for a list of available properties
             // https://firebase.google.com/docs/reference/js/firebase.User
             //const uid = user.uid;
 
-            dispatch( authLogin(user.uid, user.email))
+            dispatch( authLogin(user.uid, user.email));
 
-            setisLoggedIn(true)
+            setIsLoggedIn(true);
+
+            //Esta linea permite aplicar la accion startLoadingNotes de nuestro store aplicando Redux.
+            dispatch( startLoadingNotes(user.uid) );
 
           } else {
             // User is signed out
-            setisLoggedIn(false)
+            setIsLoggedIn(false)
           }
 
           setChecking(false);
 
         });
         
-  }, [dispatch, setChecking]);
+  }, [dispatch, setChecking, setIsLoggedIn]);
 
     if(checking) {
       return (
-          <h1> Espere...</h1>
+          <h1> Wait...</h1>
       )
     }
 
@@ -49,7 +53,7 @@ const AppRouter = () => {
         <Router>
         <div>
           <Switch>
-            <PublicRoutes exact isAuthenticated= {isLoggedIn} path="/auth/login" component= {AuthRouter} />
+            <PublicRoutes isAuthenticated= {isLoggedIn} path="/auth" component= {AuthRouter} />
 
             <PrivateRoutes exact isAuthenticated= {isLoggedIn} path="/" component= {JournalScreen} />
 

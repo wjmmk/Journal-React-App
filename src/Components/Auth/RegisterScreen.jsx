@@ -29,7 +29,7 @@ const RegisterScreen = () => {
       e.preventDefault()
 
       if( isFormValid()) {
-         dispatch( startRegisterWithNameEmailPassword(name, email, password, password2))
+         dispatch( startRegisterWithNameEmailPassword( email, password, name ))
       }
   }
 

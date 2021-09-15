@@ -1,5 +1,5 @@
 
-import types from '../Types/type'
+import {types} from '../Types/type'
 
 export const registerError = (err) => ({
     type: types.registerError,

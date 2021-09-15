@@ -3,10 +3,11 @@ import {
           signInWithPopup, 
           createUserWithEmailAndPassword, 
           signInWithEmailAndPassword,
-          signOut
+          signOut,
+          updateProfile
 } from "firebase/auth";
 import { provider } from '../Firebase/firebaseConfig'
-import types from '../Types/type';
+import {types} from '../Types/type';
 import { finishLoading, startLoading } from "./registerError";
 import Swal from 'sweetalert2';
 
@@ -20,9 +21,9 @@ export const startLoginEmailPassword = (email, password) => {
       const auth = getAuth();  
       signInWithEmailAndPassword(auth, email, password)
               .then((result) => {
-                //console.log(result);
+               // console.log(result);
 
-                dispacth( authLogin(result.user.uid, result.user.displayName, result.user.email) )
+                dispacth( authLogin(result.user.uid, result.user.displayName) )
 
                 dispacth( finishLoading())
               })
@@ -55,7 +56,7 @@ export const startGoogleLogin = (email, password) => {
     }
 }
 
-export const startRegisterWithNameEmailPassword = (name, email, password) => {
+export const startRegisterWithNameEmailPassword = ( email, password, name) => {
   
     return async ( dispacth ) => {
 
@@ -63,6 +64,16 @@ export const startRegisterWithNameEmailPassword = (name, email, password) => {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in
+          updateProfile(auth.currentUser, { displayName: name })
+          .then(() => {
+            // Profile updated!
+            dispacth(
+              authLogin(userCredential.uid, userCredential.displayName)
+          )
+          }).catch((error) => {
+            // An error occurred
+            // ...
+          });
           const user = userCredential.user;
           console.log(user)
         })
