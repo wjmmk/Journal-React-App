@@ -23,3 +23,5 @@ This is an application that controls the daily events of any user; based on smal
 
 Already with the Implementation of the Redux pattern, integrated with the Authentication in Firebase and hosting the images in cloudinary.
 
+![](src/assets/Main-Screen.jpg)
+
