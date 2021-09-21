@@ -22,6 +22,15 @@
     width: 100%;
 }
 
+.btn-danger {
+    background-color: black;
+    transition: background-color .3s ease;
+
+    &:hover {
+        background-color: darken($color: #000000, $amount: 15) black;
+    }
+}
+
 .btn-primary {
     background-color: $primary;
     border-radius: 2px;

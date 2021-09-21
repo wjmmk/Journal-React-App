@@ -40,7 +40,10 @@ const LoginScreen = () => {
                <i className="fas fa-users"></i>
             </div>
 
-           <form onSubmit= { handleLogin }>
+           <form 
+                onSubmit= { handleLogin }
+                className= "animate__animated animate__fadeIn animate__faster"
+           >
                <input 
                    className="auth__input"
                    type="text"

@@ -10,6 +10,7 @@ import { provider } from '../Firebase/firebaseConfig'
 import {types} from '../Types/type';
 import { finishLoading, startLoading } from "./registerError";
 import Swal from 'sweetalert2';
+import { noteLogout } from "./notes";
 
 
 
@@ -21,7 +22,6 @@ export const startLoginEmailPassword = (email, password) => {
       const auth = getAuth();  
       signInWithEmailAndPassword(auth, email, password)
               .then((result) => {
-               // console.log(result);
 
                 dispacth( authLogin(result.user.uid, result.user.displayName) )
 
@@ -99,7 +99,9 @@ export const startLogout = () => {
      
       await signOut(auth).then(() => {
         
-        dispatch( logout() )
+        dispatch( logout() );
+
+        dispatch( noteLogout() );
 
       }).catch((error) => {
         // An error happened.
