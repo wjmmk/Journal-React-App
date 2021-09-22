@@ -1,4 +1,4 @@
-import { fileUpload } from "../../Helpers/fileUpload";
+import { fileUpload } from '../../Helpers/fileUpload';
 
 describe('teste in fileUpload', () => {
     
@@ -10,7 +10,7 @@ describe('teste in fileUpload', () => {
         const file = new File([blob], 'foto.png');
         const url = await fileUpload(file);
 
-        //console.log(url);
+        console.log(url);
 
         expect(typeof url).toBe('string');
     });
